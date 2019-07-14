@@ -1,3 +1,5 @@
+student_list = []
+
 def create_student():
     # ask the user for the student's name
     # Create the dictionary in the format {'name': '<student_name>, 'marks': []}
@@ -27,10 +29,47 @@ def calculate_average_mark(student):
     return total / number
 
 
-s = create_student()
+def print_student_details(student):
+    # print out a string that tells the user the important information about student
+    print("{}, average mark: {}.".format(student['name'], calculate_average_mark(student)))
 
-add_mark(s, 5)
-add_mark(s, 3)
 
-print(calculate_average_mark(s))
+def print_student_list(students):
+    for i, student in enumerate(students):
+        print("ID: {} ".format(i))
+        print_student_details(student)
+
+
+def menu():
+    # Add a student (to student_list)
+    # Add a mark to a student
+    # Print a list of student
+    # Exit the application
+    selection = input("Enter 'p' to print the student list,"
+                      " 's' to add a new new student,"
+                      " 'a' to add a mark to a student or"
+                      " 'q' to quit."
+    
+                      " Enter your selection:")
+
+    while selection != 'q':
+        if selection == 'p':
+            print_student_list(student_list)
+        elif selection == 's':
+            student_list.append(create_student())
+        elif selection == 'a':
+            student_id = int(input("Enter the student ID to add a mark to: "))
+            student = student_list[student_id]
+            new_mark = int(input("Enter the new mark to be added: "))
+            add_mark(student, new_mark)
+
+        selection = input("Enter 'p' to print the student list,"
+                          " 's' to add a new new student,"
+                          " 'a' to add a mark to a student or"
+                          " 'q' to quit."
+
+                          " Enter your selection:")
+
+
+menu()
 
