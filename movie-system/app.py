@@ -1,7 +1,13 @@
 from movie import Movie
+from user import User
 
-my_movie = Movie("Matrix", "Sci-Fi")
 
-print(my_movie.name)
+user = User("Andrew")
+
+my_movie = Movie("Matrix", "Sci-Fi", False)
+user.movies.append(my_movie)
+
+print(user)
+print(user.watched_movies())
 
 
